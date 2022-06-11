@@ -1,0 +1,26 @@
+.homeContainer{
+    margin-top: 10%;
+    background-color: #B3E8E5;
+}
+
+.loginContainer{
+    margin: 15%;
+    background-color: rgb(179, 202, 195);
+}
+
+  
+  .centered {
+      padding-top: 200px;
+      text-align: center;
+  }
+  
+  .secret-text {
+    text-align: center;
+    font-size: 2rem;
+    color: #fff;
+    background-color: #000;
+  }
+  
+
+
+
