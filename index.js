@@ -3,8 +3,13 @@ const express = require("express")
 const bodyParser = require("body-parser")
 const app = express()
 const mongoose = require("mongoose")
+<<<<<<< Updated upstream
 const encrypt = require("mongoose-encryption")
 const { redirect } = require("express/lib/response")
+=======
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+>>>>>>> Stashed changes
 const port = 3000
 
 app.use(bodyParser.urlencoded({extended:true}))
@@ -44,15 +49,34 @@ app.get("/login", (req, res)=>{
 })
 
 app.post("/login", (req, res) => {
-  User.findOne({ username: req.body.username }, (err, userInfo) => {
+  User.findOne({ username: req.body.username }, (error, userInfo) => {
     if (userInfo) {
+<<<<<<< Updated upstream
       if (userInfo.password === req.body.password) {
         console.log(userInfo);
         res.render("secrets");
       } else {
         res.send("Invalid Password.");
       }
+=======
+      bcrypt.compare(
+        req.body.password,
+        userInfo.password,
+        function (err, result) {
+          // result == true
+          if (result) {
+            res.render("secrets");
+          }
+          else if (err) {
+            console.log("error.");
+          } else {
+            res.send("Wrong Password.");
+          }
+        }
+      );
+>>>>>>> Stashed changes
     } else {
+      console.log("Invalid User");
       res.send("Invalid User");
     }
   });
@@ -63,10 +87,12 @@ app.get("/register", (req, res)=>{
 })
 
 app.post("/register", (req, res)=>{
+   
     console.log(req.body);
    const username= req.body.username
     const password= req.body.password
 
+<<<<<<< Updated upstream
     const user = new User({
         username: username,
         password: password
@@ -80,7 +106,28 @@ app.post("/register", (req, res)=>{
             res.redirect("/home")
         }
     })
+=======
+    bcrypt.hash(password, saltRounds, function(err, hash) {
+        // Store hash in your password DB.
 
+        const user = new User({
+            username: username,
+            password: hash
+        })
+    
+        user.save(err=>{
+            if (err) {
+               console.log("error occured"); 
+            } else {
+                console.log("User is Successfully Registered.");
+                res.redirect("/home")
+            }
+        })
+    
+    });
+>>>>>>> Stashed changes
+
+   
 
     
 })
