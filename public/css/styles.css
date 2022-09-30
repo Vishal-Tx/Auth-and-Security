@@ -20,7 +20,14 @@
     color: #fff;
     background-color: #000;
   }
+
+ .btn-block{
+  min-width: 90%;
+ }
   
+ body{
+background-color:aquamarine;}
+
 
 
 
