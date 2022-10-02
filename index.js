@@ -10,7 +10,7 @@ const passportLocalMongoose = require('passport-local-mongoose')
 const GoogleStrategy = require('passport-google-oauth20').Strategy
 const FacebookStrategy = require('passport-facebook')
 const findOrCreate = require('mongoose-findorcreate')
-const port = 3000
+const port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(__dirname + '/public'))
@@ -29,7 +29,9 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-mongoose.connect('mongodb://localhost:27017/userDB')
+const db_url = process.env.DB_URL || 'mongodb://localhost:27017/userDB'
+
+mongoose.connect(db_url)
 
 const userSchema = new mongoose.Schema({
   username: String,
