@@ -2,7 +2,7 @@
 
 ### Sign in or Sign up to reveal the secret and add your own.
 
-### You can sign up & sign in using the traditional or via your facebook and google id.
+### You can sign up & sign in using the traditional method or via your facebook and google id.
 
 ### Technology Used:-
  #### 1. Javascript
